@@ -1,0 +1,24 @@
+[27-Dec-2018 01:23:57 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\AdminController::stocksEdit() in /home/afjarxlw/public_html/app/Http/Controllers/AdminController.php on line 277
+[27-Dec-2018 01:58:41 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\AdminController::stocksEdit() in /home/afjarxlw/public_html/app/Http/Controllers/AdminController.php on line 342
+[10-Jan-2019 12:48:02 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 12:48:02 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:10 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:10 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:10 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:10 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:10 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:11 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:11 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:11 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:11 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:11 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:11 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:11 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:12 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:12 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:12 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:13 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:13 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:26:13 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:27:01 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
+[10-Jan-2019 13:27:02 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/afjarxlw/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 500
