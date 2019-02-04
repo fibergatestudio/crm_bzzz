@@ -20,6 +20,8 @@ use App\Client;
 use App\Currency;
 use App\OrderGood;
 
+//use Illuminate\Database\Eloquent\Collection;
+
 class AdminController extends Controller
 {
     public function __construct()
@@ -269,10 +271,38 @@ class AdminController extends Controller
 
     public function orders()
     {
-        $orders = Order::orderBy('id', 'desc')->get();
+        //$orders = Order::orderBy('id', 'desc')->get(); Старый вывод
+
+        $orders = DB::table('orders')
+            ->join('clients', 'orders.client_id', '=', 'clients.id')
+            ->join('order_goods', 'orders.id', '=', 'order_goods.id')
+            ->select('orders.*', 
+            'clients.name AS client_name',
+            'clients.email AS client_email',
+            'clients.tel AS client_tel',
+            'order_goods.price AS client_sum'
+                )
+            ->get();
+
+        //$orders = DB::table('orders')->paginate(4); //Кол-во записей на странице (пагинация)
+
+
+        // $client_order = DB::table('orders')
+        //     ->join('clients', 'orders.client_id', '=', 'clients.id')
+        //     ->select('orders.*', 
+        //     'clients.name AS client_name',
+        //     'clients.email AS client_email',
+        //     'clients.tel AS client_tel'
+        //         )
+        //     ->get();
+        // $order = Order::findOrFail($id);
+        // $client = Client::find($order->client_id);
+        // $orderGoods = OrderGood::where('order_id', $order->id)->get()->keyBy('good_id');
+
         $sites = Sites::orderBy('name')->get()->keyBy('id');
         return view('admin.orders', [
             'orders' => $orders,
+            //'client_order' => $client_order,
             'sites' => $sites
         ]);
     }
