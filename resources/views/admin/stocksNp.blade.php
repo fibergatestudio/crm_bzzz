@@ -17,5 +17,22 @@
             <li class="list-group-item"><strong>ТТН</strong>: {{ $response['data'][0]['IntDocNumber'] }}</li>
         </ul>
     </div>
+
+    <b>Отправить смс</b>
+    <form method="GET"  action="{{ route('sends::testsms') }}">
+        @csrf
+
+            <div class="form-group">
+                <input type="hidden" name="ttn" value="{{ $response['data'][0]['IntDocNumber'] }}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Номер телефона</label>
+                <input type="number" name="number" placeholder="380971891270" class="form-control" required>
+            </div>
+
+        <button type="submit" class="btn btn-xl btn-outline-primary">Отправить</button>
+        </div>
+    </form>
 </div>
 @endsection

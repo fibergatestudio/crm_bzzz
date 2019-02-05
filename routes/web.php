@@ -50,10 +50,13 @@ Route::get('/panel/currencies', 'AdminController@currencies')->name('currencies'
 Route::get('/panel/currencies/create', 'AdminController@currenciesCreate')->name('currencies::create');
 Route::get('/panel/currencies/edit/{id}', 'AdminController@currenciesEdit')->name('currencies::edit');
 Route::post('/panel/currencies/update', 'AdminController@currenciesUpdate')->name('currencies::update');
+//NP Controller
 Route::get('/panel/np', 'AdminController@makeNP')->name('np');
 Route::get('/panel/sends', 'AdminController@sends')->name('sends');
 Route::get('/panel/sends/np', 'AdminController@sendsNp')->name('sends::np');
 Route::get('/panel/sends/sms', 'AdminController@sendsSms')->name('sends::sms');
+
+Route::get('/panel/sends/testsms', 'AdminController@testSms')->name('sends::testsms');
 // Parser Controller
 Route::get('/parse/goods', 'ParserController@goods')->name('parse::goods');
 Route::get('/parse/goods/single', 'ParserController@goodsSingle')->name('parse::goods::single');
@@ -65,3 +68,6 @@ Route::get('/api/get/goods', 'ApiController@getGoods')->name('api::get::goods');
 Route::get('/api/save/good', 'ApiController@saveGood')->name('api::save::good');
 Route::get('/api/get/sitecategories', 'ApiController@getSiteCategories')->name('api::get::sitecategories');
 Route::get('/api/get/orders', 'ApiController@getOrders')->name('api::get::orders');
+
+//NOVA poshta
+//Route::get('/novaposhta', 'NovaPoshtaController@index');

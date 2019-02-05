@@ -20,6 +20,8 @@ use App\Client;
 use App\Currency;
 use App\OrderGood;
 
+//use App\NovaPoshtaApi2;
+
 //use Illuminate\Database\Eloquent\Collection;
 
 class AdminController extends Controller
@@ -433,107 +435,29 @@ class AdminController extends Controller
     public function makeNP()
     {
         $url = "https://api.novaposhta.ua/v2.0/json/";
-        /*$data = array(
-            "apiKey" => "7308cf8ce134a329a969f0058701b25c",
-            "modelName" => "Counterparty",
-            "calledMethod" => "getCounterparties",
-            "methodProperties" => array(
-                "CounterpartyProperty" => "Sender",
-                "Page" => "1"
-            )
-        );
-        $content = json_encode($data);
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HTTPHEADER,
-        array("Content-type: application/json"));
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
-        $json_response = curl_exec($curl);
-        $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        curl_close($curl);
-        $response = json_decode($json_response, true);
-        dd($response);
-        exit();*/
-        /*$data = array(
-            "apiKey" => "7308cf8ce134a329a969f0058701b25c",
-            "modelName" => "InternetDocument",
-            "calledMethod" => "save",
-            "methodProperties" => array(
-                "NewAddress" => "1",
-                "PayerType" => "Sender",
-                "PaymentMethod" => "Cash",
-                "CargoType" => "Cargo",
-                "VolumeGeneral" => "0.1",
-                "Weight" => "10",
-                "ServiceType" => "WarehouseDoors",
-                "SeatsAmount" => "1",
-                "Description" => "абажур",
-                "Cost" => "500",
-                "CitySender" => "8d5a980d-391c-11dd-90d9-001a92567626",
-                "Sender" => "2e68ddde-09cf-11e9-8b24-005056881c6b",
-                "SenderAddress" => "01ae2633-e1c2-11e3-8c4a-0050568002cf",
-                "ContactSender" => "46994b37-09db-11e9-8b24-005056881c6b",
-                "SendersPhone" => "380991768077",
-                "RecipientCityName" => "київ",
-                "RecipientArea" => "",
-                "RecipientAreaRegions" => "",
-                "RecipientAddressName" => "Столичне шосе",
-                "RecipientHouse" => "20",
-                "RecipientFlat" => "37",
-                "RecipientName" => "Тест Тест Тест",
-                "RecipientType" => "PrivatePerson",
-                "RecipientsPhone" => "380938027377",
-                "DateTime" => "12.01.2019"
-            )
-        );
-        $content = json_encode($data);
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HTTPHEADER,
-        array("Content-type: application/json"));
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
-        $json_response = curl_exec($curl);
-        $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        curl_close($curl);
-        $response = json_decode($json_response, true);
-        dd($response);*/
-    }
-
-    public function sends()
-    {
-        return view('admin.sends');
-    }
-
-    public function sendsNp()
-    {
-        $url = "https://api.novaposhta.ua/v2.0/json/";
-        /*$data = array(
-            "apiKey" => "7308cf8ce134a329a969f0058701b25c",
-            "modelName" => "Counterparty",
-            "calledMethod" => "getCounterparties",
-            "methodProperties" => array(
-                "CounterpartyProperty" => "Sender",
-                "Page" => "1"
-            )
-        );
-        $content = json_encode($data);
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HTTPHEADER,
-        array("Content-type: application/json"));
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
-        $json_response = curl_exec($curl);
-        $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        curl_close($curl);
-        $response = json_decode($json_response, true);
-        dd($response);
-        exit();*/
+        // $data = array(
+        //     "apiKey" => "7308cf8ce134a329a969f0058701b25c",
+        //     "modelName" => "Counterparty",
+        //     "calledMethod" => "getCounterparties",
+        //     "methodProperties" => array(
+        //         "CounterpartyProperty" => "Sender",
+        //         "Page" => "1"
+        //     )
+        // );
+        // $content = json_encode($data);
+        // $curl = curl_init($url);
+        // curl_setopt($curl, CURLOPT_HEADER, false);
+        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($curl, CURLOPT_HTTPHEADER,
+        // array("Content-type: application/json"));
+        // curl_setopt($curl, CURLOPT_POST, true);
+        // curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+        // $json_response = curl_exec($curl);
+        // $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        // curl_close($curl);
+        // $response = json_decode($json_response, true);
+        // dd($response);
+        // exit();
         $data = array(
             "apiKey" => "7308cf8ce134a329a969f0058701b25c",
             "modelName" => "InternetDocument",
@@ -553,7 +477,7 @@ class AdminController extends Controller
                 "Sender" => "2e68ddde-09cf-11e9-8b24-005056881c6b",
                 "SenderAddress" => "01ae2633-e1c2-11e3-8c4a-0050568002cf",
                 "ContactSender" => "46994b37-09db-11e9-8b24-005056881c6b",
-                "SendersPhone" => "380991768077",
+                "SendersPhone" => "380971891270",
                 "RecipientCityName" => "київ",
                 "RecipientArea" => "",
                 "RecipientAreaRegions" => "",
@@ -562,8 +486,105 @@ class AdminController extends Controller
                 "RecipientFlat" => "37",
                 "RecipientName" => "Тест Тест Тест",
                 "RecipientType" => "PrivatePerson",
-                "RecipientsPhone" => "380938027377",
+                "RecipientsPhone" => "380971891270",
                 "DateTime" => "12.01.2019"
+            )
+        );
+        $content = json_encode($data);
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER,
+        array("Content-type: application/json"));
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+        $json_response = curl_exec($curl);
+        $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        curl_close($curl);
+        $response = json_decode($json_response, true);
+        dd($response);
+    }
+
+    public function sends()
+    {
+        return view('admin.sends');
+    }
+
+    public function sendsNp(Request $request)
+    {
+        $url = "https://api.novaposhta.ua/v2.0/json/";
+        // $data = array(
+        //     "apiKey" => "7308cf8ce134a329a969f0058701b25c",
+        //     "modelName" => "Counterparty",
+        //     "calledMethod" => "getCounterparties",
+        //     "methodProperties" => array(
+        //         "CounterpartyProperty" => "Sender",
+        //         "Page" => "1",
+        //         'DateTime' => date('d.m.Y')
+        //     )
+        // );
+        // $data = array(
+        //     "apiKey" => "7308cf8ce134a329a969f0058701b25c",
+        //     "modelName" => "Counterparty",
+        //     "calledMethod" => "save",
+        //     "methodProperties" => array(
+        //         "CityRef" => "db5c88d7-391c-11dd-90d9-001a92567626",
+        //         "FirstName" => "Фелікс",
+        //         "MiddleName" => "Едуардович",
+        //         "LastName" => "Яковлєв",
+        //         "Phone" => "0997979789",
+        //         "Email" => "",
+        //         "CounterpartyType" => "PrivatePerson",
+        //         "CounterpartyProperty" => "Recipient"
+        //     )
+        // );
+        // $content = json_encode($data);
+        // $curl = curl_init($url);
+        // curl_setopt($curl, CURLOPT_HEADER, false);
+        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($curl, CURLOPT_HTTPHEADER,
+        // array("Content-type: application/json"));
+        // curl_setopt($curl, CURLOPT_POST, true);
+        // curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+        // $json_response = curl_exec($curl);
+        // $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        // curl_close($curl);
+        // $response = json_decode($json_response, true);
+        // // dd($response);
+        // // exit();
+        // return view('admin.stocksNp', [
+        // 'response' => $response
+        // ]);
+        $data = array(
+            "apiKey" => "7308cf8ce134a329a969f0058701b25c",
+            "modelName" => "InternetDocument",
+            "calledMethod" => "save",
+            "methodProperties" => array(
+                "NewAddress" => "1",
+                "PayerType" => "Sender",
+                "PaymentMethod" => "Cash",
+                "CargoType" => "Cargo",
+                "VolumeGeneral" => "0.1",
+                "Weight" => "10",
+                "ServiceType" => "WarehouseDoors",
+                "SeatsAmount" => "1",
+                "Description" => "абажур",
+                "Cost" => $request->cost, //Запрос стоимости
+                "CitySender" => "8d5a980d-391c-11dd-90d9-001a92567626",
+                "Sender" => "2e68ddde-09cf-11e9-8b24-005056881c6b",
+                "SenderAddress" => "01ae2633-e1c2-11e3-8c4a-0050568002cf",
+                "ContactSender" => "46994b37-09db-11e9-8b24-005056881c6b",
+                "SendersPhone" => "380971891270",
+                "RecipientCityName" => $request->city, //Запрос Города
+                "RecipientArea" => "",
+                "RecipientAreaRegions" => "",
+                "RecipientAddressName" => "Столичне шосе",
+                "RecipientHouse" => "20",
+                "RecipientFlat" => "37",
+                "RecipientName" => $request->fio, //Запрос ФИО
+                "RecipientType" => "PrivatePerson",
+                "RecipientsPhone" => "380971891270",
+                "DateTime" => "05.02.2019"
             )
         );
         $content = json_encode($data);
@@ -586,7 +607,22 @@ class AdminController extends Controller
 
     public function sendsSms()
     {
-        DB::connection('turbosms')->table('alfakher21')->insert(['number' => '380507619585', 'sign' => 'Msg', 'message' => 'Номер ТТН Вашего заказа: 20450107120929. C Уважением, al-fakher.com.ua', 'send_time' => date('Y-m-d H:i:s')]);
+        DB::connection('turbosms')->table('alfakher21')->insert(['number' => '380971891270', 'sign' => 'Msg', 'message' => 'Номер ТТН Вашего заказа: 20450107120929. C Уважением, al-fakher.com.ua', 'send_time' => date('Y-m-d H:i:s')]);
+        $sms = DB::connection('turbosms')->table('alfakher21')->orderBy('id', 'desc')->limit(10)->get();
+        return view('admin.stocksSms', [
+            'sms' => $sms
+        ]);
+    }
+
+    public function testSms(Request $request)
+    {
+        $ttn = $request->ttn;
+
+        $phone_number = $request->number;
+
+        $text = "Номер ТТН Вашего заказа: ". "$ttn" . " C Уважением, al-fakher.com.ua";
+
+        DB::connection('turbosms')->table('alfakher21')->insert(['number' => $phone_number, 'sign' => 'Msg', 'message' => $text, 'send_time' => date('Y-m-d H:i:s')]);
         $sms = DB::connection('turbosms')->table('alfakher21')->orderBy('id', 'desc')->limit(10)->get();
         return view('admin.stocksSms', [
             'sms' => $sms

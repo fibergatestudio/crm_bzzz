@@ -56,6 +56,8 @@
                     <li class="sidenav-item{{ ((Route::currentRouteName() == 'clients') ? ' active' : '') }}"><a href="{{ route('clients') }}" class="sidenav-link"><i class="sidenav-icon ion ion ion-ios-people d-block"></i><div>Клиенты</div></a></li>
                     <li class="sidenav-header small font-weight-semibold">Логистика</li>
                     <li class="sidenav-item{{ ((Route::currentRouteName() == 'sends') ? ' active' : '') }}"><a href="{{ route('sends') }}" class="sidenav-link"><i class="sidenav-icon ion ion-md-log-out d-block"></i><div>Отправки</div></a></li>
+                    <li class="sidenav-header small font-weight-semibold">НоваПочта</li>
+                    <li class="sidenav-item{{ ((Route::currentRouteName() == 'sends') ? ' active' : '') }}"><a href="{{ route('sends') }}" class="sidenav-link"><i class="sidenav-icon ion ion-md-log-out d-block"></i><div>НП_ТЕСТ</div></a></li>
                 </ul>
             </div>
             <div class="layout-container">
