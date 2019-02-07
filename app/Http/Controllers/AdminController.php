@@ -19,6 +19,7 @@ use App\Order;
 use App\Client;
 use App\Currency;
 use App\OrderGood;
+use App\Clients;
 
 //use App\NovaPoshtaApi2;
 
@@ -275,6 +276,7 @@ class AdminController extends Controller
     {
         //$orders = Order::orderBy('id', 'desc')->get(); Старый вывод
 
+        /*** Необработанные Заказы ***/
         $orders = DB::table('orders')
             ->join('clients', 'orders.client_id', '=', 'clients.id')
             ->join('order_goods', 'orders.id', '=', 'order_goods.id')
@@ -283,9 +285,62 @@ class AdminController extends Controller
             'clients.email AS client_email',
             'clients.tel AS client_tel',
             'order_goods.price AS client_sum'
-                )
+                )->where('order_status', 'unprocessed')
             ->get();
 
+        $courier_delivery_orders = DB::table('orders')
+            ->join('clients', 'orders.client_id', '=', 'clients.id')
+            ->join('order_goods', 'orders.id', '=', 'order_goods.id')
+            ->select('orders.*', 
+            'clients.name AS client_name',
+            'clients.email AS client_email',
+            'clients.tel AS client_tel',
+            'order_goods.price AS client_sum'
+                )->where('delivery_type', 1)
+            ->get();
+
+        $pickup_delivery_orders = DB::table('orders')
+            ->join('clients', 'orders.client_id', '=', 'clients.id')
+            ->join('order_goods', 'orders.id', '=', 'order_goods.id')
+            ->select('orders.*', 
+            'clients.name AS client_name',
+            'clients.email AS client_email',
+            'clients.tel AS client_tel',
+            'order_goods.price AS client_sum'
+                )->where('delivery_type', 2)
+            ->get();
+
+        $cash_on_delivery_orders = DB::table('orders')
+            ->join('clients', 'orders.client_id', '=', 'clients.id')
+            ->join('order_goods', 'orders.id', '=', 'order_goods.id')
+            ->select('orders.*', 
+            'clients.name AS client_name',
+            'clients.email AS client_email',
+            'clients.tel AS client_tel',
+            'order_goods.price AS client_sum'
+                )->where('delivery_type', 3)
+            ->get();
+
+        $unprocessed_orders = DB::table('orders')->where('order_status', 'unprocessed')->count(); //Подсчет необработанных заказов
+        $courier_delivery = DB::table('orders')->where('delivery_type', 1)->count(); //Подсчет курьерских доставок
+        $pickup_delivery = DB::table('orders')->where('delivery_type', 2)->count(); //Подсчет самовызовов
+        $cash_on_delivery = DB::table('orders')->where('delivery_type', 3)->count(); //Подсчет наложенных платежей
+        
+
+        /*** Обработанные Заказы ***/
+
+        $proc_orders = DB::table('orders')
+        ->join('clients', 'orders.client_id', '=', 'clients.id')
+        ->join('order_goods', 'orders.id', '=', 'order_goods.id')
+        ->select('orders.*', 
+        'clients.name AS client_name',
+        'clients.email AS client_email',
+        'clients.tel AS client_tel',
+        'order_goods.price AS client_sum'
+            )->where('order_status', 'processed')
+        ->get();
+
+        $processed_orders = DB::table('orders')->where('order_status', 'processed')->count(); //Подсчет обработанных заказов
         //$orders = DB::table('orders')->paginate(4); //Кол-во записей на странице (пагинация)
 
 
@@ -304,9 +359,57 @@ class AdminController extends Controller
         $sites = Sites::orderBy('name')->get()->keyBy('id');
         return view('admin.orders', [
             'orders' => $orders,
-            //'client_order' => $client_order,
-            'sites' => $sites
+                'courier_delivery_orders' => $courier_delivery_orders,
+                'pickup_delivery_orders' => $pickup_delivery_orders,
+                'cash_on_delivery_orders' => $cash_on_delivery_orders,
+            'sites' => $sites,
+            'unprocessed_orders' => $unprocessed_orders,
+                'courier_delivery' => $courier_delivery,
+                'pickup_delivery' => $pickup_delivery,
+                'cash_on_delivery' => $cash_on_delivery,
+            'processed_orders' => $processed_orders,
+            'proc_orders' => $proc_orders
         ]);
+    }
+
+    public function newOrder(){
+
+        //$np = new NovaPoshtaApi2('7308cf8ce134a329a969f0058701b25c');
+
+        $citylist = file_get_contents ('http://novaposhta.ua/shop/office/getjsonwarehouselist');
+
+        $a = json_decode ($citylist, true);
+
+        // foreach($a['response'] as $warehouse){
+        //     $city = $warehouse['city']; //название города
+        //     $address = $warehouse['address']; //адрес отделения
+        // }
+
+        return view('admin.neworder',
+        [
+            'citylist' => $citylist,
+            'a' => $a
+
+        ]);
+    }
+
+    public function createNewOrder(Request $request){
+
+        $new_order_client = new Clients;
+        $new_order_client->email = $request->email;
+        $new_order_client->name = $request->name;
+        $new_order_client->tel = $request->tel;
+        $new_order_client->save();
+
+        $new_order = new Order;
+        $new_order->client_id = $new_order_client->id;
+        $new_order->com = $request->com;
+        $new_order->order_pay = $request->order_pay;
+        $new_order->site_id = $request->site_id;
+        $new_order->order_status = $request->order_status;
+        $new_order->save();
+
+        return back();
     }
 
     public function ordersEdit($id)
@@ -357,6 +460,7 @@ class AdminController extends Controller
         $order->delivery_type = $request->delivery_type;
         $order->order_type = $request->order_type;
         $order->order_pay = $request->order_pay;
+        $order->payment_method = $request->payment_method;
         $order->com = $request->com;
         $order->save();
         return redirect()->route('orders::edit', ['id' => $order->id])->with('status', '1');

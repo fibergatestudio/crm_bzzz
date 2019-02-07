@@ -28,9 +28,9 @@
                     <label class="col-form-label col-sm-2 text-sm-right" for="delivery_type">Тип доставки</label>
                     <div class="col-sm-10">
                         <select class="form-control" id="delivery_type" name="delivery_type">                            
-                            <option value="0"{{ (empty($order->delivery_type) ? ' selected' : '') }}>Самовывоз</option>
-                            <option value="1"{{ (!empty($order->delivery_type) && ($order->delivery_type == 1) ? ' selected' : '') }}>Доставка по Киеву</option>
-                            <option value="2"{{ (!empty($order->delivery_type) && ($order->delivery_type == 2) ? ' selected' : '') }}>Доставка Новой почтой</option>                            
+                            <option value="0"{{ (empty($order->delivery_type) ? ' selected' : '') }}>Курьерская доставка</option>
+                            <option value="1"{{ (!empty($order->delivery_type) && ($order->delivery_type == 1) ? ' selected' : '') }}>Самовызов из магазина</option>
+                            <option value="2"{{ (!empty($order->delivery_type) && ($order->delivery_type == 2) ? ' selected' : '') }}>Наложенный платёж</option>                            
                         </select>
                     </div>
                 </div>
@@ -51,6 +51,17 @@
                         <select class="form-control" id="order_pay" name="order_pay">                            
                             <option value="0"{{ (empty($order->order_pay) ? ' selected' : '') }}>Не оплачен</option>
                             <option value="1"{{ (!empty($order->order_pay) && ($order->order_pay == 1) ? ' selected' : '') }}>Оплачен</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2 text-sm-right" for="order_pay">Способ оплаты</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="payment_method" name="payment_method">                            
+                            <option value="0"{{ (empty($order->payment_method) ? ' selected' : '') }}>Наличными при получении</option>
+                            <option value="1"{{ (!empty($order->payment_method) && ($order->payment_method == 1) ? ' selected' : '') }}>Наличными курьеру</option>
+                            <option value="2"{{ (!empty($order->payment_method) && ($order->payment_method == 2) ? ' selected' : '') }}>Перевод на карту Master Card/Visa</option>
+
                         </select>
                     </div>
                 </div>

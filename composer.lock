@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0f08e4f86227fdd3c45e516f1e72d416",
+    "content-hash": "2a385ddb8d727f25576fa3fae03323cf",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1174,7 +1174,7 @@
         },
         {
             "name": "lis-dev/nova-poshta-api-2",
-            "version": "0.1.1-stable",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lis-dev/nova-poshta-api-2.git",
@@ -5051,7 +5051,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "lis-dev/nova-poshta-api-2": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

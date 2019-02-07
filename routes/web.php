@@ -38,6 +38,11 @@ Route::get('/panel/purchases/create', 'AdminController@purchasesCreate')->name('
 Route::get('/panel/purchases/read/{id}', 'AdminController@purchasesRead')->name('purchases::read');
 Route::post('/panel/purchases/update', 'AdminController@purchasesEdit')->name('purchases::update');
 Route::get('/panel/orders', 'AdminController@orders')->name('orders');
+//Страница нового заказа по номеру телефона
+Route::get('/panel/orders/neworder', 'AdminController@neworder')->name('neworder');
+    //Создание нового заказа
+    Route::post('/panel/orders/neworder/create', 'AdminController@createNewOrder')->name('createneworder');
+
 Route::get('/panel/orders/create', 'AdminController@ordersCreate')->name('orders::create');
 Route::get('/panel/orders/edit/{id}', 'AdminController@ordersEdit')->name('orders::edit');
 Route::get('/panel/orders/read/{id}', 'AdminController@ordersRead')->name('orders::read');
