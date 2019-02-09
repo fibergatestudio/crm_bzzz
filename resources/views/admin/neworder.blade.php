@@ -15,22 +15,6 @@
                     <h3 class="mb-0">Добавление заказа</h3>
                 </div> -->
 
-
-{{--  --}}
-<select>
-
-<?php 
-        foreach($a['response'] as $warehouse){
-        $city = $warehouse['city'];
-        $address = $warehouse['address'];
-        // echo $address . "\r\n";
-        ?>
-            <option value="<?= $address ?>"><?= $address ?></option>
-        <?php
-        }
-?>
-
-</select>
                 <div class="card-body">
                     <form class="form" action="{{ route('createneworder') }}" method="POST">
                     <div class="modal-body">
@@ -46,18 +30,32 @@
                                     <input type="text" name="name" class="form-control" placeholder="ФИО" required >
                                     <input type="text" name="tel" class="form-control" placeholder="Телефон" required >
                                     <input type="text" name="email" class="form-control" placeholder="E-mail" required >
-                                    <input type="text" name="new_general_name" class="form-control" placeholder="Адрес/Почтовое отделение">
+                                    <select class="form-control" name="department_number" required>
+                                        <?php 
+                                                foreach($a['response'] as $warehouse){
+                                                $city = $warehouse['city'];
+                                                $address = $warehouse['address'];
+                                                $ref = $warehouse['ref'];
+                                                $number = $warehouse['number'] 
+                                                // echo $address . "\r\n";
+                                                ?>
+                                                    <option value="<?= $ref ?>">Отделение №<?= $number ?> <b><?= $city ?></b> (<?= $address ?>)</option>
+                                                <?php
+                                                }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>                            
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Список товаров</label>
                                     <hr>
-                                    <input type="text" name="new_brand" class="form-control" placeholder="Артикул товара">
-                                    <input type="date" name="new_brand" class="form-control">
-                                    <input type="text" name="new_brand" class="form-control" placeholder="Наименование товара">
-                                    <input type="number" name="new_brand" class="form-control" placeholder="Количество">
-                                    <input type="number" name="new_brand" class="form-control" placeholder="Цена">
+                                    Артикул товара (тестовое значение 164 (Табак Лимон))
+                                    <input type="text" name="good_id" class="form-control" value="164" required>
+                                    <!-- <input type="date" name="new_brand" class="form-control"> -->
+                                    <input type="text" name="new_brand" class="form-control" value="Табак Element Lemon (Лимон) - 100 грамм" required>
+                                    <input type="number" name="quantity" class="form-control" placeholder="Количество" required>
+                                    <input type="number" name="price" class="form-control" placeholder="Цена" required>
                                     <input type="number" name="new_brand" class="form-control" placeholder="Сумма">
                                 </div>
                             </div>                            
@@ -74,7 +72,7 @@
                                     <input type="text" name="com" class="form-control" placeholder="Комментарий менеджера" required>
                                     <select class="form-control" id="order_status" name="order_status" required>                            
                                         <option value="processed">Обработанный</option>
-                                        <option value="unprocessed">Необработанный</option>
+                                        <option value="unprocessed" selected>Необработанный</option>
                                     </select>
                                 </div>
                             </div>
@@ -94,5 +92,4 @@
             </div>
         </div>
     </div>
-
 @endsection

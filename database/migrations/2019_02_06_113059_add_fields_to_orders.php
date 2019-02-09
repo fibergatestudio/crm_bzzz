@@ -15,8 +15,10 @@ class AddFieldsToOrders extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             //order status
-            $table->string('order_status')->nullable();
+            $table->string('order_status')->default('unprocessed');
             $table->string('payment_method')->index()->default(0);
+            $table->string('department_number')->nullable();
+            $table->string('delivery_status')->nullable();
         });
     }
 
@@ -30,6 +32,8 @@ class AddFieldsToOrders extends Migration
         Schema::table('orders', function (Blueprint $table) {
             $table->dropColumn('order_status');
             $table->dropColumn('payment_method');
+            $table->dropColumn('department_number');
+            $table->dropColumn('delivery_status');
         });
     }
 }

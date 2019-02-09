@@ -9,26 +9,29 @@
 
     <form method="GET"  action="{{ route('sends::np') }}">
         @csrf
-
+        <p>ТНН создается по этим введенным данным (тест) и нажатием кнопку "добавить"</p>
+        <p>ФИО - требует Имя-фамилию</p>
         <div class="row">
             <div class="form-group">
                 <label>ФИО</label>
-                <input type="text" name="fio" class="form-control" required>
+                <input type="text" name="fio" class="form-control" value="Имя Фамилия" placeholder="Имя Фамилия" required>
             </div>
 
             <div class="form-group">
                 <label>Город</label>
-                <input type="text" name="city" class="form-control" required>
+                <input type="text" name="city" class="form-control" value="Киев" placeholder="Киев" required>
             </div>
 
             <div class="form-group">
                 <label>Стоимость</label>
-                <input type="number" name="cost" class="form-control" required>
+                <input type="number" name="cost" class="form-control" value="3200" placeholder="3200" required>
             </div>
 
         <button type="submit" class="btn btn-light">Добавить</button>
         </div>
     </form>
+
+
 
     <h4 class="font-weight-bold py-3 mb-4">Отправки<div class="text-muted text-tiny mt-1"><small class="font-weight-normal">{{ $days[date('N')] }}, {{ date('d') }} {{ $monthes[date('n')] }} {{ date('Y') }}</small></div></h4>
     <a href="{{ route('sends::np') }}" class="btn btn-xl btn-outline-primary">Создать накладную</a> 

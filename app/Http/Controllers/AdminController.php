@@ -20,8 +20,9 @@ use App\Client;
 use App\Currency;
 use App\OrderGood;
 use App\Clients;
+Use App\OrderGoods;
 
-//use App\NovaPoshtaApi2;
+use App\NovaPoshtaApi;
 
 //use Illuminate\Database\Eloquent\Collection;
 
@@ -34,7 +35,15 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.index');
+        $unprocessed_orders = DB::table('orders')->where('order_status', 'unprocessed')->count(); //Подсчет необработанных заказов
+        $good_categories = DB::table('good_categories')->count(); //Подсчет Категорий
+        $goods = DB::table('goods')->count(); //Подсчет Товаров
+        return view('admin.index',
+        [
+            'unprocessed_orders' => $unprocessed_orders,
+            'good_categories' => $good_categories,
+            'goods' => $goods
+        ]);
     }
 
     public function categories()
@@ -322,9 +331,9 @@ class AdminController extends Controller
             ->get();
 
         $unprocessed_orders = DB::table('orders')->where('order_status', 'unprocessed')->count(); //Подсчет необработанных заказов
-        $courier_delivery = DB::table('orders')->where('delivery_type', 1)->count(); //Подсчет курьерских доставок
-        $pickup_delivery = DB::table('orders')->where('delivery_type', 2)->count(); //Подсчет самовызовов
-        $cash_on_delivery = DB::table('orders')->where('delivery_type', 3)->count(); //Подсчет наложенных платежей
+            $courier_delivery = DB::table('orders')->where('delivery_type', 1)->count(); //Подсчет курьерских доставок
+            $pickup_delivery = DB::table('orders')->where('delivery_type', 2)->count(); //Подсчет самовызовов
+            $cash_on_delivery = DB::table('orders')->where('delivery_type', 3)->count(); //Подсчет наложенных платежей
         
 
         /*** Обработанные Заказы ***/
@@ -341,6 +350,10 @@ class AdminController extends Controller
         ->get();
 
         $processed_orders = DB::table('orders')->where('order_status', 'processed')->count(); //Подсчет обработанных заказов
+            $status_on_assembly = DB::table('orders')->where('delivery_status', 'onassembly')->count(); //Подсчет заказов на сборке
+            $status_waiting = DB::table('orders')->where('delivery_status', 'waiting')->count(); //Подсчет ожидаемых отправки
+            $status_on_way = DB::table('orders')->where('delivery_status', 'onway')->count(); //Подсчет заказов в пути
+            $status_delivered = DB::table('orders')->where('delivery_status', 'delivered')->count(); //Подсчет доставленых заказов
         //$orders = DB::table('orders')->paginate(4); //Кол-во записей на странице (пагинация)
 
 
@@ -368,6 +381,10 @@ class AdminController extends Controller
                 'pickup_delivery' => $pickup_delivery,
                 'cash_on_delivery' => $cash_on_delivery,
             'processed_orders' => $processed_orders,
+                'status_on_assembly' => $status_on_assembly,
+                'status_waiting' => $status_waiting,
+                'status_on_way' => $status_on_way,
+                'status_delivered' => $status_delivered,
             'proc_orders' => $proc_orders
         ]);
     }
@@ -375,6 +392,10 @@ class AdminController extends Controller
     public function newOrder(){
 
         //$np = new NovaPoshtaApi2('7308cf8ce134a329a969f0058701b25c');
+
+        // // В параметрах указывается город и область (для более точного поиска)
+        // $city = $np->getCities('Киев', 'Киевская');
+        // $result = $np->getWarehouses($city);
 
         $citylist = file_get_contents ('http://novaposhta.ua/shop/office/getjsonwarehouselist');
 
@@ -385,12 +406,21 @@ class AdminController extends Controller
         //     $address = $warehouse['address']; //адрес отделения
         // }
 
-        return view('admin.neworder',
+
+        $kappa = new NovaPoshtaApi();
+        $region = $kappa->getCities();
+        
+        echo '<pre>';
+        print_r($kappa->getOtdeleniyaByCity('Киев'));
+        echo '</pre>';
+
+        /* return view('admin.neworder',
         [
             'citylist' => $citylist,
-            'a' => $a
+            'a' => $a,
+            'region' => $region
 
-        ]);
+        ]); */
     }
 
     public function createNewOrder(Request $request){
@@ -407,9 +437,18 @@ class AdminController extends Controller
         $new_order->order_pay = $request->order_pay;
         $new_order->site_id = $request->site_id;
         $new_order->order_status = $request->order_status;
+        $new_order->department_number =$request->department_number;
         $new_order->save();
 
-        return back();
+        $new_order_goods = new OrderGoods;
+        $new_order_goods->order_id= $new_order->id;
+        $new_order_goods->good_id = $request->good_id;
+        $new_order_goods->quantity = $request->quantity;
+        $new_order_goods->price = $request->price;
+        $new_order_goods->save();
+
+        //return back();
+        return view('admin.sends');
     }
 
     public function ordersEdit($id)
@@ -688,7 +727,7 @@ class AdminController extends Controller
                 "RecipientName" => $request->fio, //Запрос ФИО
                 "RecipientType" => "PrivatePerson",
                 "RecipientsPhone" => "380971891270",
-                "DateTime" => "05.02.2019"
+                "DateTime" => date('d.m.Y')
             )
         );
         $content = json_encode($data);

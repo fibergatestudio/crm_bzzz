@@ -222,10 +222,10 @@
         <div id="processed" class="tab-pane fade">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#rdy0"><button class="btn btn-light">Все заказы <b style="color:#27caff;">({{ $processed_orders }})</b></button></a></li>
-                <li><a data-toggle="tab" href="#rdy1" class="active show"><button class="btn btn-light">На сборке(27)</button></a></li> 
-                <li><a data-toggle="tab" href="#rdy2"><button class="btn btn-light">Ожидает отправки(78)</button></a></li>
-                <li><a data-toggle="tab" href="#rdy3"><button class="btn btn-light">В пути(27)</button></a></li>
-                <li><a data-toggle="tab" href="#rdy4"><button class="btn btn-light">Доставлено(8)</button></a></li>
+                <li><a data-toggle="tab" href="#rdy1" class="active show"><button class="btn btn-light">На сборке <b style="color:#27caff;">({{ $status_on_assembly }})</b></button></a></li>
+                <li><a data-toggle="tab" href="#rdy2"><button class="btn btn-light">Ожидает отправки <b style="color:#27caff;">({{ $status_waiting }})</b></button></a></li>
+                <li><a data-toggle="tab" href="#rdy3"><button class="btn btn-light">В пути <b style="color:#27caff;">({{ $status_on_way }})</b></button></a></li>
+                <li><a data-toggle="tab" href="#rdy4"><button class="btn btn-light">Доставлено <b style="color:#27caff;">({{ $status_delivered }})</b></button></a></li>
             </ul>
 
             <div class="tab-content">

@@ -1,6 +1,6 @@
 <?php
 
-namespace LisDev\Delivery;
+namespace App;
 
 /**
  * Nova Poshta API Class.
